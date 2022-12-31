@@ -1,0 +1,28 @@
+long long int m=1e9+7;
+        vector<int> dp(100001,-1);
+
+class Solution {
+  public:
+    long long int topDown(int n) {
+       
+        if(n<=1) return n;
+        if(dp[n]!=-1)
+        return dp[n]%m;
+        int c1=topDown(n-1);
+        int c2=topDown(n-2);
+        return dp[n]= (c1+c2)%m;
+        
+    }
+    long long int bottomUp(int n) {
+        // code here
+        long long int DP[n+1];
+        if(n<=1)
+        return n;
+        DP[0]=0;
+        DP[1]=1;
+        for(int i =2; i<=n; i++){
+            DP[i]=(DP[i-1]+DP[i-2])%m;
+        }
+        return DP[n]%m;
+    }
+};
